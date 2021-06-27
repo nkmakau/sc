@@ -25,7 +25,7 @@ spec:
     requests:
       storage: 20Gi
 ----
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sc-mysql
@@ -57,6 +57,11 @@ spec:
         - containerPort: 3306
           name: mysql
         readinessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
           tcpSocket:
             port: 3306
           initialDelaySeconds: 15
