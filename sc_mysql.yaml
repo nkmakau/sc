@@ -12,3 +12,16 @@ spec:
     tier: mysql
   clusterIP: None
 ----
+apiVersion: v1
+kind: PersistantVolumeClaim
+metadata:
+  name: mysql-pv-claim
+  labels:
+    app: sc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+----
